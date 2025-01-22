@@ -1,0 +1,62 @@
+
+  <main class="main registerform">
+    <div class="form-container">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2>Register</h2>
+  
+        <!-- Username Field -->
+        <div>
+          <input type="text" id="username" formControlName="username" placeholder="Username" />
+          <div *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched" class="error-message">
+            Username is required.
+          </div>
+        </div>
+  
+        <!-- Email Field -->
+        <div>
+          <input type="email" id="email" formControlName="email" placeholder="Email" />
+          <div *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" class="error-message">
+            Email is required.
+          </div>
+          <div *ngIf="registerForm.controls['email'].hasError('email') && registerForm.controls['email'].touched" class="error-message">
+            Invalid email format.
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div>
+          <input type="password" id="password" formControlName="password" placeholder="Password" />
+          <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="error-message">
+            Password is required.
+          </div>
+        </div>
+  
+        <!-- Confirm Password Field -->
+        <div>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" />
+          <div *ngIf="registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched" class="error-message">
+            Confirm Password is required.
+          </div>
+          <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.controls['confirmPassword'].touched" class="error-message">
+            Passwords do not match.
+          </div>
+        </div>
+  
+        <!-- Phone Number Field -->
+        <div>
+          <input type="tel" id="phone" formControlName="phone" placeholder="Phone Number" />
+          <div *ngIf="registerForm.controls['phone'].hasError('required') && registerForm.controls['phone'].touched" class="error-message">
+            Phone Number is required.
+          </div>
+          <div *ngIf="registerForm.controls['phone'].hasError('pattern') && registerForm.controls['phone'].touched" class="error-message">
+            Phone number must be a 10-digit number.
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button class="btn1" type="submit">Register</button>
+      </form>
+    </div>
+  </main>
+  
+  
