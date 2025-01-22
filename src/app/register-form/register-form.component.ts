@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -8,13 +9,13 @@ import { CommonModule } from '@angular/common';
   selector: 'app-register-form',
   imports: [RouterOutlet, ReactiveFormsModule, CommonModule],
   templateUrl: './register-form.component.html',
-  styleUrl: './register-form.component.css'
+  styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group(
       {
         username: ['', Validators.required],
@@ -27,7 +28,6 @@ export class RegisterFormComponent {
     );
   }
 
-  // Custom validator to check if password and confirm password match
   passwordMatchValidator(form: FormGroup): { [key: string]: boolean } | null {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -36,7 +36,7 @@ export class RegisterFormComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Form Submitted:', this.registerForm.value);
+      this.router.navigate(['/confirmation'], { state: { formData: this.registerForm.value } });
     } else {
       console.log('Form is invalid');
     }

@@ -1,0 +1,16 @@
+.confirmation-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  
